@@ -34,12 +34,13 @@ public class GPSUtils {
 		}
 		return min;
 	}
-//ser du dette?
+//ser du dette????
+	//
 	public static double[] getLatitudes(GPSPoint[] gpspoints) {
 
 		// TODO - START
 		double[] tab = new double[gpspoints.length];
-		
+		throw new UnsupportedOperationException(TODO.method());
 		
 		// TODO - SLUTT
 	}
