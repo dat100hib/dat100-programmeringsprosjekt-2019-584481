@@ -69,6 +69,6 @@ public class GPSPoint {
 
 
 		// TODO - slutt
-		return time + " " + (longitude + " " + latitude) + " " + elevation;  
+		return time + " " + "(" + latitude +"," + longitude + ")" + " " + elevation+"\n";  
 	}
 }
