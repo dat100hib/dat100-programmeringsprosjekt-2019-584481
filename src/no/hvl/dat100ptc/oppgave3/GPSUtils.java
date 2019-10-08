@@ -34,7 +34,7 @@ public class GPSUtils {
 		}
 		return min;
 	}
-
+//ser du dette?
 	public static double[] getLatitudes(GPSPoint[] gpspoints) {
 
 		// TODO - START
