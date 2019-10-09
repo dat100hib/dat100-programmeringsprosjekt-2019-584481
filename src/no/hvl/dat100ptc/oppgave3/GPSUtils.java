@@ -71,31 +71,36 @@ public class GPSUtils {
 		double c = 2*atan2(sqrt(a),sqrt(1-a));
 		d = R*c;
 		return d;
-		
 	}
 
 	public static double speed(GPSPoint gpspoint1, GPSPoint gpspoint2) {
-
 		int secs;
+		int time1 = gpspoint1.getTime();
+		int time2 = gpspoint2.getTime(); 
+		secs = time2 - time1;
 		double speed;
-
-		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-
+		double distance = distance(gpspoint1, gpspoint2);
+		//fart formel = strekning/delta tid
+		speed = (distance/secs)*3.6;
+		return speed;
 	}
 
 	public static String formatTime(int secs) {
 
 		String timestr;
 		String TIMESEP = ":";
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
 		
-		// TODO - SLUTT
+		double min = secs/60;
+		double sec = secs%60;
+		double hour = min/60;
+		timestr = 
+		
+		
+		
+	
+		
+
+		
 
 	}
 	private static int TEXTWIDTH = 10;
