@@ -27,12 +27,12 @@ public class GPSComputer {
 	}
 	
 	// beregn total distances (i meter)
-	public double totalDistance(GPSPoint[] gpspoints) {
+	public double totalDistance() {
 
 		double distance = 0;
 
 		// TODO - START
-		for (int i = 0; i < gpspoints.length; i++) {
+		for (int i = 0; i < gpspoints.length-1; i++) {
 			distance += GPSUtils.distance(gpspoints[i],gpspoints[i+1]); 
 		}
 
@@ -46,54 +46,75 @@ public class GPSComputer {
 		double elevation = 0;
 
 		// TODO - START
+		for (int i = 0;  i < gpspoints.length-1; i++) {
+			if (gpspoints[i].getElevation()< gpspoints[i+1].getElevation()) {
+				elevation= gpspoints[i+1].getElevation(); 
+			}
+		}
 
-		throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
-
+		return elevation; 
 	}
 
 	// beregn total tiden for hele turen (i sekunder)
 	public int totalTime() {
 
-		throw new UnsupportedOperationException(TODO.method());
-
+		int start = gpspoints[0].getTime(); 
+		int slutt = gpspoints[gpspoints.length-1].getTime();
+		
+		int tid = slutt-start; 
+		
+		return tid;
 	}
 		
 	// beregn gjennomsnitshastighets mellom hver av gps punktene
 
 	public double[] speeds() {
 		
-		// TODO - START		// OPPGAVE - START
+		double fart = 0; 
+		double gjennomsnitt = 0;
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		// TODO - START		// OPPGAVE - START
+		double [] tab = new double [gpspoints.length-1];  //lager tom tabell
+		for (int i = 0; i < gpspoints.length-1; i++) {
+			fart = GPSUtils.speed(gpspoints[i],gpspoints[i+1]);
+			tab[i]=fart;
+		}
+		return tab;
 		// TODO - SLUTT
 
 	}
 	
 	public double maxSpeed() {
-		
+		double [] speeds = speeds();
 		double maxspeed = 0;
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		for (int i = 0; i < gpspoints.length-1; i++) {
+			if (speeds [i]>maxspeed) {
+				maxspeed = speeds[i];
+				
+			}
+
+			
+		}
 		// TODO - SLUTT
-		
+		return maxspeed; 
 	}
 
 	public double averageSpeed() {
 
 		double average = 0;
+		double distanse = totalDistance(); 
+		double tid = totalTime(); 
 		
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		 
+		average = (distanse/tid)*3.6;
 		// TODO - SLUTT
-		
+		return average;
 	}
 
 	/*
