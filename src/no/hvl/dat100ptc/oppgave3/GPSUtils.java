@@ -34,29 +34,28 @@ public class GPSUtils {
 		}
 		return min;
 	}
-//ser du dette????
-	//
+
 	public static double[] getLatitudes(GPSPoint[] gpspoints) {
 
 		// TODO - START
+	
 		double[] tab = new double[gpspoints.length];
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - SLUTT
+		for(int i= 0;i<tab.length;i++) {
+			tab[i]= gpspoints[i].getLatitude();	
+		}
+		return tab;
 	}
 
 	public static double[] getLongitudes(GPSPoint[] gpspoints) {
 
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - SLUTT
-
+		double[] tab = new double[gpspoints.length];
+		for(int i= 0;i<tab.length;i++) {
+			tab[i]= gpspoints[i].getLongitude();
+		}
+		return tab;
 	}
 
 	private static int R = 6371000; // jordens radius
-
 	public static double distance(GPSPoint gpspoint1, GPSPoint gpspoint2) {
 
 		double d;
