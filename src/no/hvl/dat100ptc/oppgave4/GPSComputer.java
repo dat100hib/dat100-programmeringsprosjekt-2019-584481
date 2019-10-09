@@ -27,16 +27,17 @@ public class GPSComputer {
 	}
 	
 	// beregn total distances (i meter)
-	public double totalDistance() {
+	public double totalDistance(GPSPoint[] gpspoints) {
 
 		double distance = 0;
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		for (int i = 0; i < gpspoints.length; i++) {
+			distance += GPSUtils.distance(gpspoints[i],gpspoints[i+1]); 
+		}
 
 		// TODO - SLUTT
-
+		return distance; 
 	}
 
 	// beregn totale høydemeter (i meter)
