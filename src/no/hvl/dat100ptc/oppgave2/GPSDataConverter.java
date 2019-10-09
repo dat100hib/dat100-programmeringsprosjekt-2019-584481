@@ -2,6 +2,9 @@ package no.hvl.dat100ptc.oppgave2;
 
 import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
+import static javax.swing.JOptionPane.*;
+import static java.lang.Integer.*;
+import static java.lang.Double.*; 
 
 public class GPSDataConverter {
 
@@ -19,23 +22,33 @@ public class GPSDataConverter {
 		
 		// TODO
 		// OPPGAVE - START
+		//henter tallene fra kommentarene i linje 12. 
+		hr = parseInt(timestr.substring(11,13)); 
+		min = parseInt(timestr.substring(14,16)); 
+		sec = parseInt(timestr.substring(17,19)); 
 		
-		throw new UnsupportedOperationException(TODO.method());
-
 		// OPPGAVE - SLUTT
-		
+		// gjør om til sekunder
+		hr = hr * 3600; 
+		min = min * 60; 
+		sec = sec; 
+		return hr + min + sec;
 	}
 
 	public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
 
-		GPSPoint gpspoint;
 
 		// TODO - START ;
+		int time = toSeconds(timeStr); 
+		double latitude = parseDouble(latitudeStr); 
+		double longitude = parseDouble(longitudeStr); 
+		double elevation = parseDouble(elevationStr); 
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+	GPSPoint gpspoint = new GPSPoint(time, latitude, longitude, elevation);
+		
 		// OPPGAVE - SLUTT ;
-	    
+
+	    return gpspoint; 
 	}
 	
 }
