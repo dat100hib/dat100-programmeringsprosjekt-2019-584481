@@ -64,11 +64,12 @@ public class GPSData {
 
 		// TODO - START
 
-		throw new UnsupportedOperationException(TODO.method());
-
+		 for (GPSPoint gps : gpspoints) {
+			 System.out.print(gps.toString()); 
+		 }
 		// TODO - SLUTT
 		
-		// System.out.println("====== Konvertert GPS Data - SLUTT ======");
+		System.out.println("====== Konvertert GPS Data - SLUTT ======");
 
 	}
 }
