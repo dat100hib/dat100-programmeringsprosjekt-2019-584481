@@ -2,6 +2,8 @@ package no.hvl.dat100ptc.oppgave2;
 
 import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
+import static java.lang.Double.*; 
+
 
 public class GPSData {
 
@@ -11,8 +13,8 @@ public class GPSData {
 	public GPSData(int antall) {
 
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.construtor("GPSData"));
+		gpspoints = new GPSPoint [antall]; //refereansetabell 
+		this.antall = 0 ; 
 
 		// TODO - SLUTT
 	}
@@ -26,9 +28,14 @@ public class GPSData {
 		boolean inserted = false;
 
 		// TODO - START
+		if (this.antall < gpspoints.length){
+			gpspoints[this.antall] = gpspoint; 
+			this.antall++; 
+			
+			inserted = true;
+		}
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		return inserted; 
 		// TODO - SLUTT
 	}
 
@@ -37,8 +44,15 @@ public class GPSData {
 		GPSPoint gpspoint;
 
 		// TODO - START
+		int sekunder = GPSDataConverter.toSeconds(time); 
+		double breddegr = parseDouble(latitude); 
+		double lengdegr = parseDouble(longitude);
+		double høydegr = parseDouble(elevation); 
 		
-		throw new UnsupportedOperationException(TODO.method());
+		gpspoint = new GPSPoint(sekunder, breddegr, lengdegr, høydegr); 
+		
+		return insertGPS(gpspoint); //returnerer for er boolean og får den tilbake er den good.
+		
 
 		// TODO - SLUTT
 		

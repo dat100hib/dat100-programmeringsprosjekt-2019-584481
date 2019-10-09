@@ -46,7 +46,7 @@ public class GPSDataConverter {
 		
 	GPSPoint gpspoint = new GPSPoint(time, latitude, longitude, elevation);
 		
-		// OPPGAVE - SLUTT ;
+		// OPPGAVE - SLUTT;
 
 	    return gpspoint; 
 	}
