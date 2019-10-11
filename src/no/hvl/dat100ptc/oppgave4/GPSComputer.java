@@ -95,10 +95,8 @@ public class GPSComputer {
 		for (int i = 0; i < gpspoints.length-1; i++) {
 			if (speeds [i]>maxspeed) {
 				maxspeed = speeds[i];
-				
+	
 			}
-
-			
 		}
 		// TODO - SLUTT
 		return maxspeed; 
@@ -133,33 +131,36 @@ public class GPSComputer {
 	public double kcal(double weight, int secs, double speed) {
 
 		double kcal;
-
 		// MET: Metabolic equivalent of task angir (kcal x kg-1 x h-1)
 		double met = 0;		
 		double speedmph = speed * MS;
 		
 		// if for aa finne met
-		if( speedmph)
-		//kcal = met *weight *time 
-
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-		
+		if(speedmph<10) {
+			met = 4.0;
+		} else if (speedmph<=12) {
+			met = 6.0;
+		} else if (speedmph<=14) {
+			met = 8.0;
+		} else if (speedmph<=16) {
+			met = 10.0;
+		} else if (speedmph<=20) {
+			met = 12.0;	
+		} else if (speedmph>20) {
+			met = 16.0;	
+		}
+		double hour = secs/3600.0;
+		kcal = met*weight*hour;
+		return kcal;
 	}
 
 	public double totalKcal(double weight) {
 
 		double totalkcal = 0;
-
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-
+		totalkcal = kcal(weight,totalTime(),averageSpeed());
 		// TODO - SLUTT
-		
+		return totalkcal;
 	}
 	
 	private static double WEIGHT = 80.0;
@@ -167,13 +168,15 @@ public class GPSComputer {
 	public void displayStatistics() {
 
 		System.out.println("==============================================");
-
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-		
+		System.out.println("Total Time     :   "+totalTime());
+		System.out.println("Total distance :   "+totalDistance()+" km");
+		System.out.println("Total elevation:   "+totalElevation()+" m");
+		System.out.println("Max speed      :   "+maxSpeed()+" km/t");
+		System.out.println("Average speed  :   "+averageSpeed()+" km/t");
+		System.out.println("Energy         :   "+totalKcal(WEIGHT)+" kcal");
 		// TODO - SLUTT
-		
+		System.out.println("==============================================");
 	}
 
 }
