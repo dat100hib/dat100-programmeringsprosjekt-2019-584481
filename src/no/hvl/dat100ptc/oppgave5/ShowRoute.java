@@ -59,7 +59,7 @@ public class ShowRoute extends EasyGraphics {
 		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
 		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
 
-		double ystep = MAPYSIZE / (Math.abs(maxlat - minlat)); 
+		double ystep = (MAPYSIZE -2*MARGIN)/ (Math.abs(maxlat - minlat)); 
 
 		return ystep;
 
@@ -76,14 +76,33 @@ public class ShowRoute extends EasyGraphics {
 		double[] latitudes = GPSUtils.getLatitudes(gpspoints);
 		double[] longitudes = GPSUtils.getLongitudes(gpspoints); 
 		
-		for (int i = 0; i < gpspoints.length; i++) {
+		for (int i = 0; i < gpspoints.length-1; i++) {
 			double y =  latitudes[i];
 			double x =  longitudes[i];
+			double y2 = latitudes[i+1];
+			double x2 = longitudes[i+1]; 
 			
 			int xpos =(int)((x - GPSUtils.findMin(longitudes))*xstep());
 			int ypos = (int)  ((GPSUtils.findMax(latitudes)-y)* ystep());
 			
-			drawCircle(xpos,ypos,2);
+			int xpos2 =(int)((x2 - GPSUtils.findMin(longitudes))*xstep());
+			int ypos2 = (int)  ((GPSUtils.findMax(latitudes)-y2)* ystep());
+			
+			if(i == gpspoints.length-2) {
+				setColor(0,0,255); 
+				fillCircle(xpos,MARGIN+ypos,3); 
+		}else {
+			setColor(0,250,0);
+			fillCircle(xpos,MARGIN+ypos,3);
+			}
+			
+			
+			setColor(250,0,0);
+			drawLine(xpos,MARGIN+ypos,xpos2,MARGIN+ypos2); 
+			
+
+		
+			
 		}
 		
 	}
@@ -97,10 +116,24 @@ public class ShowRoute extends EasyGraphics {
 		
 		// TODO - START
 		
-		System.out.println("dude"); 
-		//throw new UnsupportedOperationException(TODO.method());
+		gpscomputer.displayStatistics();
 		
-		// TODO - SLUTT;
+		int xpos =20;
+		int ypos =40;
+		double WEIGHT = 80.0;
+		
+		drawString("==============================================",xpos,ypos);
+		
+		drawString("Total Time     :   "+gpscomputer.totalTime(),xpos,ypos+TEXTDISTANCE);
+		drawString("Total distance :   "+gpscomputer.totalDistance()+" km", xpos, ypos+TEXTDISTANCE*2);
+		drawString("Total elevation:   "+gpscomputer.totalElevation()+" m",xpos,ypos+TEXTDISTANCE*3);
+		drawString("Max speed      :   "+gpscomputer.maxSpeed()+" km/t",xpos,ypos+TEXTDISTANCE*4);
+		drawString("Average speed  :   "+gpscomputer.averageSpeed()+" km/t",xpos,ypos+TEXTDISTANCE*5);
+		drawString("Energy         :   "+gpscomputer.totalKcal(WEIGHT)+" kcal",xpos,ypos+TEXTDISTANCE*6);
+//		
+		drawString("==============================================",xpos,ypos+TEXTDISTANCE*7);
+		
+		// TODO - SLUTT;mmedou
 	}
 
 	public void playRoute(int ybase) {
