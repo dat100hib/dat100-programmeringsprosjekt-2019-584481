@@ -45,10 +45,18 @@ public class ShowProfile extends EasyGraphics {
 	public void showHeightProfile(int ybase) {
 
 		// ybase indicates the position on the y-axis where the columns should start
-		
+		run();	
+		int height = 0; 
+		int xpos = 55;
+		for (int i = 0; i<gpspoints.length;i++) {
+			height = (int)gpspoints[i].getElevation();
+			
+			drawLine(xpos,ybase,xpos,-height);
+			xpos++;
+			
+		}
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		
 	
 		// TODO - SLUTT
 	}
