@@ -55,23 +55,37 @@ public class ShowRoute extends EasyGraphics {
 	// antall y-pixels per breddegrad
 	public double ystep() {
 	
-		double ystep;
-		
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
+		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
+
+		double ystep = MAPYSIZE / (Math.abs(maxlat - minlat)); 
+
+		return ystep;
 
 		// TODO - SLUTT
 		
 	}
 
 	public void showRouteMap(int ybase) {
-
-		// TODO - START
+		//som tegner punkter i vinduet svarende til de (lengdegrad,breddegrad) posisjoner som 
+		//finnes i GPS datafilen. 
+		//Parameteren ybase angir det sted på y-aksen som skal svare til den minste breddegrad 
+		//som finnes i datafilen.
 		
-		throw new UnsupportedOperationException(TODO.method());
+		double[] latitudes = GPSUtils.getLatitudes(gpspoints);
+		double[] longitudes = GPSUtils.getLongitudes(gpspoints); 
 		
-		// TODO - SLUTT
+		for (int i = 0; i < gpspoints.length; i++) {
+			double y =  latitudes[i];
+			double x =  longitudes[i];
+			
+			int xpos =(int)((x - GPSUtils.findMin(longitudes))*xstep());
+			int ypos = (int)  ((GPSUtils.findMax(latitudes)-y)* ystep());
+			
+			drawCircle(xpos,ypos,2);
+		}
+		
 	}
 
 	public void showStatistics() {
@@ -83,7 +97,8 @@ public class ShowRoute extends EasyGraphics {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		System.out.println("dude"); 
+		//throw new UnsupportedOperationException(TODO.method());
 		
 		// TODO - SLUTT;
 	}
@@ -92,8 +107,8 @@ public class ShowRoute extends EasyGraphics {
 
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		//throw new UnsupportedOperationException(TODO.method());
+		System.out.println("dude"); 
 		// TODO - SLUTT
 	}
 
